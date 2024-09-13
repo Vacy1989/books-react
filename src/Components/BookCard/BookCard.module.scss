@@ -1,0 +1,31 @@
+$primary-color: #3498db;
+$font-color: #fff;
+
+.container {
+  padding: 4%;
+  margin-top: 20px;
+  .books-div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    text-align: left;
+  }
+  .title,
+  .author,
+  .genre {
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+    color: $primary-color;
+    text-shadow: 1px 1px 2px $font-color;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+  .genre {
+    font-size: 10px;
+  }
+  img {
+    border-radius: 9px;
+    box-shadow: 1px 1px 5px 5px #000000;
+  }
+}

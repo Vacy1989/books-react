@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+.books-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
