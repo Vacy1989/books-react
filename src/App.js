@@ -96,47 +96,79 @@ function App() {
   // useState is used insted of regular variables const and let in order to force react to update or rerender onValue change
 
   // let selectedGenre = "";
+
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState("");
 
+  // Handle genre selection change
   const handleOnGenreChange = (genre) => {
-    console.log("App.js", genre);
+    console.log("App.js Genre:", genre);
     setSelectedGenre(genre);
   };
-  console.log("Hello World", selectedGenre);
 
-  const filteredBooks = books.filter((book, index) => {
-    return book.genre === selectedGenre || !selectedGenre;
-  });
-  console.log("Cao", filteredBooks);
-
+  // Handle author selection change
   const handleOnAuthorsChange = (author) => {
-    console.log(author);
+    console.log("App.js Author:", author);
     setSelectedAuthor(author);
   };
-  console.log(selectedAuthor);
 
-  const filteredAuthors = books.filter((book, index) => {
+  // Filter books based on selected genre
+  const filteredBooksByGenre = books.filter((book) => {
+    return book.genre === selectedGenre || !selectedGenre;
+  });
+
+  // Filter books based on selected author
+  const filteredBooksByAuthor = books.filter((book) => {
     return book.author === selectedAuthor || !selectedAuthor;
   });
-  console.log(filteredAuthors);
+
+  const resetBooks = () => {
+    setSelectedGenre("");
+    setSelectedAuthor("");
+  };
+
   return (
     <div className="App">
       <h1>Select a Book Genre</h1>
-      <GenreDropdown books={books} onGenreChange={handleOnGenreChange} />
-      <h1>Select an Author</h1>
-      <AuthorsDropdown books={books} onAuthorsChange={handleOnAuthorsChange} />
+      <div className={style["books-display"]}>
+        <GenreDropdown books={books} onGenreChange={handleOnGenreChange} />
+        <button className={style["button-reset"]} onClick={resetBooks}>
+          Reset Books
+        </button>
+      </div>
       <div className={style["books-div"]}>
-        {filteredBooks.map((book, index) => {
-          return (
-            <BookCard
-              url={book.url}
-              title={book.title}
-              author={book.author}
-              genre={book.genre}
-            />
-          );
-        })}
+        {filteredBooksByGenre.map((book, index) => (
+          <BookCard
+            key={book.id}
+            url={book.url}
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+          />
+        ))}
+      </div>
+      <div className={style["authors-title"]}>
+        <h1>Books by Author</h1>
+        <div className={style["dropdown-style"]}>
+          <AuthorsDropdown
+            books={books}
+            onAuthorsChange={handleOnAuthorsChange}
+          />
+          <button className={style["button-reset"]} onClick={resetBooks}>
+            Reset Books
+          </button>
+        </div>
+      </div>
+      <div className={style["books-div"]}>
+        {filteredBooksByAuthor.map((book, index) => (
+          <BookCard
+            key={book.id}
+            url={book.url}
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+          />
+        ))}
       </div>
     </div>
   );

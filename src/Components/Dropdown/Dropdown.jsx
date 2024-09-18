@@ -9,7 +9,7 @@ export const Dropdown = ({ options, label, onChange }) => {
         className="dropdown-select"
         onChange={(e) => {
           console.log("dropdown.js", e.target.value);
-          onChange("bla", e.target.value, "Valentina");
+          onChange(e.target.value, "Valentina");
         }}
       >
         <option value="" disabled hidden selected>
