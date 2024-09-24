@@ -99,6 +99,7 @@ function App() {
 
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
 
   // Handle genre selection change
   const handleOnGenreChange = (genre) => {
@@ -112,19 +113,33 @@ function App() {
     setSelectedAuthor(author);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTitle(event.target.value);
+  };
+
   // Filter books based on selected genre
   const filteredBooksByGenre = books.filter((book) => {
     return book.genre === selectedGenre || !selectedGenre;
   });
 
   // Filter books based on selected author
-  const filteredBooksByAuthor = books.filter((book) => {
+  const filtered = filteredBooksByGenre.filter((book) => {
     return book.author === selectedAuthor || !selectedAuthor;
+  });
+
+  const filteredBooks = books.filter((book) => {
+    const matchesGenre = book.genre === selectedGenre || !selectedGenre;
+    const matchesAuthor = book.author === selectedAuthor || !selectedAuthor;
+    const matchesSearchTitle = book.title
+      .toLowerCase()
+      .includes(searchTitle.toLowerCase());
+    return matchesGenre && matchesAuthor && matchesSearchTitle;
   });
 
   const resetBooks = () => {
     setSelectedGenre("");
     setSelectedAuthor("");
+    setSearchTitle("");
   };
 
   return (
@@ -133,19 +148,8 @@ function App() {
       <div className={style["books-display"]}>
         <GenreDropdown books={books} onGenreChange={handleOnGenreChange} />
         <button className={style["button-reset"]} onClick={resetBooks}>
-          Reset Books
+          Clear selection
         </button>
-      </div>
-      <div className={style["books-div"]}>
-        {filteredBooksByGenre.map((book, index) => (
-          <BookCard
-            key={book.id}
-            url={book.url}
-            title={book.title}
-            author={book.author}
-            genre={book.genre}
-          />
-        ))}
       </div>
       <div className={style["authors-title"]}>
         <h1>Books by Author</h1>
@@ -155,20 +159,32 @@ function App() {
             onAuthorsChange={handleOnAuthorsChange}
           />
           <button className={style["button-reset"]} onClick={resetBooks}>
-            Reset Books
+            Clear selection
           </button>
         </div>
       </div>
+      <div className={style["search-bar"]}>
+        <input
+          type="text"
+          placeholder="Search for a book..."
+          value={searchTitle}
+          onChange={handleSearchChange}
+        />
+      </div>
       <div className={style["books-div"]}>
-        {filteredBooksByAuthor.map((book, index) => (
-          <BookCard
-            key={book.id}
-            url={book.url}
-            title={book.title}
-            author={book.author}
-            genre={book.genre}
-          />
-        ))}
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
+            <BookCard
+              key={book.id}
+              url={book.url}
+              title={book.title}
+              author={book.author}
+              genre={book.genre}
+            />
+          ))
+        ) : (
+          <p>No books found</p>
+        )}
       </div>
     </div>
   );
@@ -179,3 +195,7 @@ export default App;
 // add a button next to dropdown that will clear the selection
 //nauciti prosledjivanje parametra na dole//na gore
 //nauciti useState
+//*************/
+//add tailwind css new project
+//input box to search by title of the book/filter the list by text
+//reset all, and separate button to only erase by genre and author

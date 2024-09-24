@@ -13,9 +13,9 @@ export const GenreDropdown = ({ books, onGenreChange }) => {
       <Dropdown
         label="Select a Genre:"
         options={genres}
-        onChange={(value, value2, value3) => {
-          console.log("genre Dropdown.jsx", value, value2, value3);
-          onGenreChange(value2);
+        onChange={(param1, param2, param3) => {
+          console.log("genre Dropdown.jsx", param1, param2, param3);
+          onGenreChange(param1);
         }}
       />
     </div>

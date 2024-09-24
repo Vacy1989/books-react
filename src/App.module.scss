@@ -29,3 +29,23 @@ h1 {
 .button-reset {
   margin-left: 20px;
 }
+.search-bar {
+  margin: 20px 0;
+  justify-content: center;
+  display: flex;
+
+  input {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+}
