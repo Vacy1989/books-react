@@ -18,7 +18,7 @@ function App() {
     {
       id: 2,
       url: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1720446357i/209439446.jpg",
-      title: "Onix Storm",
+      title: "Onyx Storm",
       author: "Rebecca Yarros",
       genre: "Romantic Fantasy",
     },
@@ -144,23 +144,30 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Select a Book Genre</h1>
-      <div className={style["books-display"]}>
-        <GenreDropdown books={books} onGenreChange={handleOnGenreChange} />
-        <button className={style["button-reset"]} onClick={resetBooks}>
-          Clear selection
-        </button>
-      </div>
-      <div className={style["authors-title"]}>
-        <h1>Books by Author</h1>
-        <div className={style["dropdown-style"]}>
-          <AuthorsDropdown
-            books={books}
-            onAuthorsChange={handleOnAuthorsChange}
-          />
-          <button className={style["button-reset"]} onClick={resetBooks}>
-            Clear selection
-          </button>
+      <button className={style["button-reset-all"]} onClick={resetBooks}>
+        Clear All
+      </button>
+      <div className={style["books-header"]}>
+        <div className={style["books-display"]}>
+          <h1>Select a Book Genre</h1>
+          <div className={style["genre-div"]}>
+            <GenreDropdown books={books} onGenreChange={handleOnGenreChange} />
+            <button className={style["button-reset"]} onClick={resetBooks}>
+              Clear selection
+            </button>
+          </div>
+        </div>
+        <div className={style["authors-title"]}>
+          <h1>Books by Author</h1>
+          <div className={style["dropdown-style"]}>
+            <AuthorsDropdown
+              books={books}
+              onAuthorsChange={handleOnAuthorsChange}
+            />
+            <button className={style["button-reset"]} onClick={resetBooks}>
+              Clear selection
+            </button>
+          </div>
         </div>
       </div>
       <div className={style["search-bar"]}>

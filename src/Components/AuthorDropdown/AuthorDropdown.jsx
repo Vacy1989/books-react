@@ -8,15 +8,13 @@ const getAuthorsFromBooks = (books) => {
 export const AuthorsDropdown = ({ books, onAuthorsChange }) => {
   const authors = getAuthorsFromBooks(books);
   return (
-    <div>
-      <Dropdown
-        label="Select an Author:"
-        options={authors}
-        onChange={(authorsValue) => {
-          console.log(authorsValue);
-          onAuthorsChange(authorsValue);
-        }}
-      />
-    </div>
+    <Dropdown
+      label="Select an Author:"
+      options={authors}
+      onChange={(authorsValue) => {
+        console.log(authorsValue);
+        onAuthorsChange(authorsValue);
+      }}
+    />
   );
 };

@@ -13,8 +13,10 @@ $font-color: #fff;
   .title,
   .author,
   .genre {
-    font-weight: bold;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 15px;
     color: $primary-color;
     text-shadow: 1px 1px 2px $font-color;
